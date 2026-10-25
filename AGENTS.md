@@ -13,3 +13,22 @@ Work on one manageable learning objective at a time.
 
 After a feature works, check my understanding
 and suggest one meaningful improvement.
+
+## Learning session wrap-up
+
+When I say "wrap up", update docs/learning-log.md with a concise
+entry about the work completed in this session.
+
+Include:
+- What I built or investigated.
+- Any bug's symptom, confirmed cause and fix.
+- How the result was verified.
+- What I did myself and what assistance I received.
+- What I learned and one suggested next practice topic.
+
+Use confirmed information. Flag uncertainty rather than guessing.
+Avoid duplicate entries.
+
+This request authorizes updating the learning log only.
+Do not change application code, tests, or create Git commits
+unless I explicitly ask.

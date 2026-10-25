@@ -1,7 +1,7 @@
 [project]
 name = "python-tests"
 version = "0.1.0"
-description = "Add your description here"
+description = "A tested command-line game with SQLite-backed player persistence."
 readme = "README.md"
 authors = [
     { name = "Eric Martinez", email = "ejmartinez48@icloud.com" }

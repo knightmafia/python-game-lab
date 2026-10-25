@@ -8,10 +8,12 @@ from .rules import (
     buy_potion,
     apply_armor,
 )
-from .storage import load_player, save_player
+from .storage import initialize_database, load_player, save_player
 
 def main():
-    saved_player = load_player("practice_check.db", 1)
+    database = "practice_check.db"
+    initialize_database(database)
+    saved_player = load_player(database, 1)
 
     if saved_player is None:
         print("Player not found.")
@@ -79,7 +81,7 @@ def main():
             else:
                 print("Not enough credits")
         elif action == "save":
-            save_player("practice_check.db", player)
+            save_player(database, player)
             print("Player Saved!")
         else:
             print("Unknown Command")

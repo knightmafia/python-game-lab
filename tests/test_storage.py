@@ -1,5 +1,10 @@
 import sqlite3
-from python_tests.storage import load_player, save_player_health, save_player
+from python_tests.storage import (
+    load_player,
+    save_player_health,
+    save_player,
+    initialize_database,
+)
 import pytest
 
 
@@ -120,3 +125,35 @@ def test_save_player_updates_only_requested_player(database_path):
     nova = load_player(database_path, 2)
     assert taco == (1, "Taco", 25, 2, 20, 0.0, 5)
     assert nova == (2, "Nova", 40, 3, 5, 900.0, 7)
+
+def test_first_run(tmp_path):
+    # Arrange: create a path, but do not create the database yourself
+    database_path = tmp_path / "first_run.db"
+
+    # Act: call your future initialization function
+    initialize_database(database_path)
+    # Assert: load player 1 and compare it with the expected tuple
+    new_player = load_player(database_path, 1)
+    assert new_player == (1, "Taco", 100, 2, 20, 0.0, 5)
+
+def test_initialize_database_preserves_existing_player(tmp_path):
+    database_path = tmp_path / "first_run.db"
+
+    # Act: call your future initialization function
+    initialize_database(database_path)
+
+    player = {
+    "id": 1,
+    "health": 40,
+    "potions": 3,
+    "credits": 5,
+    "ready_at": 900.0,
+    "armor":20
+    }
+
+    save_player(database_path, player)
+
+    initialize_database(database_path)
+
+    taco = load_player(database_path, 1)
+    assert taco == (1, "Taco", 40, 3, 5, 900.0, 20)

@@ -1,0 +1,1 @@
+[![Tests](https://github.com/knightmafia/python-game-lab/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/knightmafia/python-game-lab/actions/workflows/tests.yml)

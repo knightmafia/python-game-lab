@@ -38,8 +38,7 @@ def main():
         print("Potions:", player["potions"])
         print("Credits:", player["credits"])
 
-        action = input("choose heal, hit, buy, save or quit: ")
-
+        action = input("choose heal, hit, buy, save or quit: ").strip().lower()
         if action == "quit":
             print("Goodbye!")
             break

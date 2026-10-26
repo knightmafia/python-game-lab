@@ -9,3 +9,6 @@ def test_armor_doesnt_heal():
 
 def test_no_armor_damage():
     assert apply_armor(5, 0) == 5
+
+def test_negative_armor_increases_damage():
+    assert apply_armor(20, -5) == 25

@@ -9,7 +9,7 @@ and persisting player state with SQLite.
 ## Features
 
 - Healing with limited potions
-- Damage reduction from armor
+- Damage reduction and vulnerability through armor values
 - An Extra Life ability with a 30-minute cooldown
 - A shop for buying potions with credits
 - SQLite persistence for player state
@@ -51,6 +51,21 @@ The available commands are:
 
 The game saves only when you enter `save`; quitting does not save
 automatically.
+
+## Armor and vulnerability
+
+Positive armor reduces incoming damage. If armor is greater than the incoming
+damage, the attack deals zero damage instead of healing the player.
+
+Negative armor represents vulnerability and increases incoming damage. For
+example, an attack worth `20` damage against `-5` armor deals `25` damage:
+
+```text
+20 - (-5) = 25
+```
+
+This negative-armor behavior is intentional and is covered by unit and
+gameplay tests.
 
 ## Run the tests
 

@@ -32,3 +32,29 @@
   initialization must run before queries, and it must be safe to repeat.
 - Next practice topic: Add concise clone, setup, test, and run instructions to
   the README.
+
+## CLI integration and rule validation
+
+- Built: Expanded the README and package description, added entry-point tests
+  for first run, saving, quitting without saving, and normalized commands.
+- Bugs: Mixed-case or padded commands were rejected, and negative damage with
+  armor was changed to zero instead of raising `ValueError`.
+- Causes: Input was compared without normalization, and armor transformed the
+  damage before the existing validation could inspect its original value.
+- Fixes: Normalize input with `strip().lower()` and validate raw damage before
+  applying armor.
+- Design decision: Negative armor intentionally represents vulnerability; unit
+  and gameplay tests now document that it increases incoming damage.
+- Git issue: Pushes failed because a GitHub CLI credential override bypassed
+  Git Credential Manager. Removing the override restored normal pushes.
+- Verification: The complete suite passed with 44 tests, focused tests covered
+  each behavior, and all completed commits were pushed to `master`.
+- My contribution: Wrote the implementation and tests, chose the vulnerability
+  behavior, interpreted failures, and corrected formatting issues.
+- Assistance: AI drafted the README, provided incremental testing hints and
+  reviews, verified results, managed commits, and diagnosed Git authentication.
+- What I learned: `tmp_path`, `monkeypatch`, and `capsys` can safely test an
+  interactive entry point; persisted state changes only on save; validation
+  must occur before calculations can hide invalid input.
+- Next practice topic: Document vulnerability in the README and decide how
+  gameplay can apply negative armor to a player.

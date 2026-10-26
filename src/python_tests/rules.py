@@ -34,6 +34,8 @@ def try_extra_life(health, now, ready_at):
     return health, ready_at
 
 def resolve_damage(health, damage, now, ready_at, armor=0):
+    if damage < 0:
+        raise ValueError("Damage cannot be negative")
     reduce_damage = apply_armor(damage, armor)
     after_damage = take_damage(health, reduce_damage)
     return try_extra_life(after_damage, now, ready_at)

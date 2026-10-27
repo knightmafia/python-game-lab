@@ -1,4 +1,4 @@
-from python_tests.rules import apply_armor
+from python_tests.rules import apply_armor, apply_armor_debuff
 
 
 def test_armor_reduces_damage():
@@ -12,3 +12,6 @@ def test_no_armor_damage():
 
 def test_negative_armor_increases_damage():
     assert apply_armor(20, -5) == 25
+
+def test_armor_debuff_can_create_vulnerability():
+    assert apply_armor_debuff(5, 10) == -5

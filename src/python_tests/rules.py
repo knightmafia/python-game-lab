@@ -56,3 +56,6 @@ def apply_armor(damage, armor):
         return 0
 
     return real_damage - armor
+
+def apply_armor_debuff(armor, amount):
+    return armor - amount

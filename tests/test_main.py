@@ -65,3 +65,21 @@ def test_main_does_not_save_unsaved_changes_on_quit(tmp_path, monkeypatch, capsy
     assert loaded_player == (1, "Taco", 100, 2, 20, 0.0, 5)
     assert "Goodbye!" in captured.out
     assert "Player Saved!" not in captured.out
+
+def test_main_applies_and_saves_armor_debuff(tmp_path, monkeypatch, capsys):
+    # Arrange
+    monkeypatch.chdir(tmp_path)
+    actions = iter(["debuff", "hit", "save", "quit"])
+    monkeypatch.setattr("builtins.input", lambda prompt: next(actions))
+    # Act
+    main()
+    captured = capsys.readouterr()
+
+    database_path = tmp_path / "practice_check.db"
+    loaded_player = load_player(database_path, 1)
+
+    # Assert
+    assert database_path.exists()
+    assert loaded_player == (1, "Taco", 65, 2, 20, 0.0, -5)
+    assert "Unknown Command" not in captured.out
+    assert "Your armor is now -5" in captured.out

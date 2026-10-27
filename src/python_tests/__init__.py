@@ -1,5 +1,6 @@
 import time
 from .rules import (
+    apply_armor_debuff,
     use_potion,
     take_damage,
     can_trigger_extra_life,
@@ -38,7 +39,7 @@ def main():
         print("Potions:", player["potions"])
         print("Credits:", player["credits"])
 
-        action = input("choose heal, hit, buy, save or quit: ").strip().lower()
+        action = input("choose debuff, heal, hit, buy, save or quit: ").strip().lower()
         if action == "quit":
             print("Goodbye!")
             break
@@ -82,6 +83,12 @@ def main():
         elif action == "save":
             save_player(database, player)
             print("Player Saved!")
+        elif action == "debuff":
+            previous_armor = player["armor"]
+            player["armor"] = apply_armor_debuff(player["armor"], 10)
+
+            if previous_armor != player["armor"]:
+                print(f"Your armor is now {player['armor']}!")
         else:
             print("Unknown Command")
 

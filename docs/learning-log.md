@@ -58,3 +58,24 @@
   must occur before calculations can hide invalid input.
 - Next practice topic: Document vulnerability in the README and decide how
   gameplay can apply negative armor to a player.
+
+## Enemy Armor Break debuff
+
+- Built: Added a reusable armor-debuff rule and a `debuff` command that lowers
+  armor by 10, allowing the enemy to create negative-armor vulnerability.
+- Bug: The first command implementation called the rule but discarded its
+  return value, so armor stayed at 5 and the next hit left 75 health.
+- Cause and fix: Integers are immutable; assigning the returned armor back to
+  `player["armor"]` produced `-5` armor and 35 damage on the next hit.
+- Verification: Unit and entry-point tests confirmed `debuff`, `hit`, `save`,
+  and `quit` persisted 65 health and -5 armor; all 46 tests passed.
+- My contribution: Defined the mechanic, wrote the rule and integration tests,
+  implemented the command, interpreted the failing result, and fixed the state
+  assignment.
+- Assistance: AI helped scope the deterministic first version, reviewed tests,
+  explained exact assertions and returned-state assignment, and verified and
+  pushed the completed steps.
+- What I learned: A returned value must be assigned when working with immutable
+  values, and exact assertions describe behavior better than truthiness checks.
+- Next practice topic: Add a way to repair armor or define whether Armor Break
+  should expire after a certain number of turns.

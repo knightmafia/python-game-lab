@@ -19,6 +19,11 @@ and suggest one meaningful improvement.
 When I say "wrap up", update docs/learning-log.md with a concise
 entry about the work completed in this session.
 
+Also review README.md and update it when confirmed work from the session
+changes documented setup, commands, features, behavior, requirements,
+testing, or project structure. Keep existing accurate content and do not
+make a README change when no documentation update is needed.
+
 Include:
 - What I built or investigated.
 - Any bug's symptom, confirmed cause and fix.
@@ -29,6 +34,6 @@ Include:
 Use confirmed information. Flag uncertainty rather than guessing.
 Avoid duplicate entries.
 
-This request authorizes updating the learning log only.
+This request authorizes updating the learning log and README only.
 Do not change application code, tests, or create Git commits
 unless I explicitly ask.

@@ -10,6 +10,7 @@ and persisting player state with SQLite.
 
 - Healing with limited potions
 - Damage reduction and vulnerability through armor values
+- An enemy Armor Break debuff
 - An Extra Life ability with a 30-minute cooldown
 - A shop for buying potions with credits
 - SQLite persistence for player state
@@ -45,6 +46,7 @@ The available commands are:
 
 - `heal` — use one potion to restore up to 25 health
 - `hit` — receive an enemy attack
+- `debuff` — simulate an enemy Armor Break that reduces armor by 10
 - `buy` — buy one potion for 10 credits
 - `save` — save the current player state
 - `quit` — exit the game
@@ -65,7 +67,8 @@ example, an attack worth `20` damage against `-5` armor deals `25` damage:
 ```
 
 This negative-armor behavior is intentional and is covered by unit and
-gameplay tests.
+gameplay tests. The `debuff` command reduces armor by `10`, which changes the
+starter armor from `5` to `-5`. Use `save` to persist the changed armor.
 
 ## Run the tests
 
